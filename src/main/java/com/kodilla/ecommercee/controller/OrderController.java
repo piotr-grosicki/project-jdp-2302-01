@@ -18,7 +18,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public void createOrder(OrderDto orderDto){
+    public void createOrder(@RequestBody OrderDto orderDto){
 
     }
 
@@ -32,12 +32,9 @@ public class OrderController {
     }
 
     @PutMapping
-    public OrderDto updateOrder(OrderDto orderDto) {
-        return new OrderDto(
-                1L,
-                LocalDateTime.of(2023, 1, 15, 15, 46),
-                new BigDecimal(995.45),
-                false);
+    public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
+        return orderDto;
+
     }
 
     @DeleteMapping(value = "{/orderId}")

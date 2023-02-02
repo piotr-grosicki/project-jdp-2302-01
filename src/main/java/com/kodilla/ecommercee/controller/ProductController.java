@@ -23,14 +23,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public void createProduct(ProductDto productDto){
+    public void createProduct(@RequestBody ProductDto productDto){
 
     }
 
     @PutMapping
-    public ProductDto updateProduct(ProductDto productDto){
-        return new ProductDto(1L, "Edit Hoodie", new BigDecimal(119.99),
-                "black with BIG Kodilla logo");
+    public ProductDto updateProduct(@RequestBody ProductDto productDto){
+        return productDto;
     }
 
     @DeleteMapping(value = "{/productId}")
