@@ -20,12 +20,12 @@ public class GroupController {
     }
 
     @PostMapping
-    public void createGroup(GroupProductDto groupProductDto) {
+    public void createGroup(@RequestBody GroupProductDto groupProductDto) {
 
     }
 
     @PutMapping
-    public GroupProductDto updateProductGroup(GroupProductDto groupProductDto) {
+    public GroupProductDto updateProductGroup(@RequestBody GroupProductDto groupProductDto) {
         return new GroupProductDto(1L, "Sweatshirt");
     }
 }
