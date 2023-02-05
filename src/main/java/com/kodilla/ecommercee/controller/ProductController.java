@@ -33,7 +33,7 @@ public class ProductController {
                 "black with BIG Kodilla logo");
     }
 
-    @DeleteMapping(value = "{/productId}")
+    @DeleteMapping(value = "/{productId}")
     public void deleteProduct(@PathVariable Long productId){
 
     }
