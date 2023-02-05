@@ -1,8 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-<<<<<<< HEAD
-public class OrderDto {
-=======
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -17,5 +14,4 @@ public class OrderDto {
     private LocalDateTime orderTime;
     private BigDecimal totalPrice;
     private boolean status;
->>>>>>> f4515c575f9cb1cf6ce5d755c8d2c48ac0742654
 }
