@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.CartsDto;
-import com.kodilla.ecommercee.domain.OrderDto;
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.domain.ProductInCartDto;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,6 @@ public class CartController {
 
     @PostMapping
     public void createCart(@RequestBody CartsDto cartsDto) {
-        //zrobione utworzenie pustego koszyka
     }
 
     @GetMapping
