@@ -12,7 +12,7 @@ import java.util.List;
 public class CartController {
 
     @PostMapping
-    public void createCarts(@RequestBody CartsDto cartsDto) {
+    public void createCart(@RequestBody CartsDto cartsDto) {
         //zrobione utworzenie pustego koszyka
     }
 
@@ -21,17 +21,17 @@ public class CartController {
         return new ArrayList<>();
     }
 
-    @PutMapping
-    public ProductInCartDto updateProduct(@RequestBody ProductInCartDto productInCartDto) {
+    @PutMapping(value = "/{cartId}")
+    public ProductInCartDto updateProduct(@PathVariable Long cartId) {
         return new ProductInCartDto(1, 1);
     }
 
-    @DeleteMapping
-    public void deleteProductFromCart(@RequestBody ProductInCartDto productInCartDto) {
+    @DeleteMapping(value = "/{cartId}")
+    public void deleteProductFromCart(@PathVariable Long cartId) {
     }
 
-    @PostMapping
-    public void createNewOrder(@RequestBody OrderDto orderDto) {
+    @PostMapping(value = "/{cartId}")
+    public void createNewOrder(@PathVariable Long cartId) {
     }
 
 
