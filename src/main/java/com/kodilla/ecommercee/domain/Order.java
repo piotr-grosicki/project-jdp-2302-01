@@ -1,10 +1,15 @@
 package com.kodilla.ecommercee.domain;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@Entity
+@Table(name="ORDER")
 public class Order {
 
     private Long id;
