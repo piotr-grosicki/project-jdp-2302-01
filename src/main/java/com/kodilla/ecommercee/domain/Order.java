@@ -11,7 +11,7 @@ public class Order {
     private LocalDateTime orderTime;
     private BigDecimal totalPrice;
     private boolean status;
-    private Carts carts;
+    private Cart cart;
     private User user;
 
     public Order(Long id, BigDecimal totalPrice, boolean status) {
@@ -62,12 +62,12 @@ public class Order {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="CART_ID")
-    public Carts getCarts(){
-        return carts;
+    public Cart getCarts(){
+        return cart;
     }
 
-    public void setCarts(Carts carts){
-        this.carts = carts;
+    public void setCarts(Cart cart){
+        this.cart = cart;
     }
 
     @ManyToOne
