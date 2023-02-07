@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "GROUP_PRODUCT")
 public class GroupProduct {
 
-    private Long id;
+    private Integer id;
     private String name;
     private List<Product> products = new ArrayList<>();
 
