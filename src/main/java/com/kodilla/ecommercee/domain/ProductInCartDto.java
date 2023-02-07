@@ -7,5 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ProductInCartDto {
     private int productId;
-    private int craftId;
+    private int cartId;
 }
