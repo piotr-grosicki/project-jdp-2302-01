@@ -3,11 +3,15 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "products")
@@ -30,4 +34,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "GROUP_PRODUCT")
     private GroupProduct groupProduct;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Cart> carts = new ArrayList<>();
 }
