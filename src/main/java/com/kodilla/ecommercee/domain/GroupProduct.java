@@ -22,11 +22,11 @@ public class GroupProduct {
     @GeneratedValue
     @NotNull
     @Column(name = "ID", unique = true)
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    private void setId(Long id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
