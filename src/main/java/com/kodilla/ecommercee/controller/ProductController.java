@@ -18,7 +18,7 @@ public class ProductController {
 
     @GetMapping(value = "/{productId}")
     public ProductDto getProduct(@PathVariable Long productId){
-        return new ProductDto(1L, "Hoodie", new BigDecimal(129.97),
+        return new ProductDto(1L, "Hoodie", new BigDecimal("129.99"),
                 "black with Kodilla logo");
     }
 
@@ -29,11 +29,11 @@ public class ProductController {
 
     @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto){
-        return new ProductDto(1L, "Edit Hoodie", new BigDecimal(119.99),
+        return new ProductDto(1L, "Edit Hoodie", new BigDecimal("119.99"),
                 "black with BIG Kodilla logo");
     }
 
-    @DeleteMapping(value = "{/productId}")
+    @DeleteMapping(value = "/{productId}")
     public void deleteProduct(@PathVariable Long productId){
 
     }

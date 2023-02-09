@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,27 +13,26 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "products")
-public class Product {
+@Entity(name = "CART")
+
+public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true)
     private Integer id;
 
-    @Column(name = "NAME")
-    private String name;
-
-    @Column(name = "PRICE")
-    private BigDecimal price;
-
-    @Column(name = "DESCRIPTION")
-    private String description;
-
-    @ManyToOne
-    @JoinColumn(name = "GROUP_PRODUCT")
-    private GroupProduct groupProduct;
+    @Column(name = "STATUS")
+    private Boolean status;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Cart> carts = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ORDER_ID")
+    private Order order;
 }
