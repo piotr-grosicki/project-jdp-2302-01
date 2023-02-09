@@ -1,6 +1,8 @@
 package com.kodilla.ecommercee.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,60 +10,33 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name="ORDER")
 public class Order {
-
-    private Long id;
-    private LocalDateTime orderTime;
-    private BigDecimal totalPrice;
-    private boolean status;
-    private Cart cart;
-    private User user;
-
-    public Order(Long id, BigDecimal totalPrice, boolean status) {
-        this.id = id;
-        this.orderTime = LocalDateTime.now();
-        this.totalPrice = totalPrice;
-        this.status = status;
-    }
 
     @Id
     @GeneratedValue
     @NotNull
     @Column(name="ID", unique=true)
-    public Long getId() {
-        return id;
-    }
-
-    private void setId(Long id) {
-        this.id = id;
-    }
+    private Integer id;
 
     @Column(name="ORDER TIME")
-    public LocalDateTime getOrderTime() {
-        return orderTime;
-    }
-
-    private void setOrderTime(LocalDateTime orderTime) {
-        this.orderTime = orderTime;
-    }
+    private LocalDateTime orderTime;
 
     @Column(name="TOTAL PRICE")
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
-
-    private void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
+    private BigDecimal totalPrice;
 
     @Column(name="STATUS")
-    public boolean isStatus() {
-        return status;
-    }
+    private boolean status;
+    private Cart cart;
+    private User user;
 
-    private void setStatus(boolean status) {
+    public Order(Integer id, BigDecimal totalPrice, boolean status) {
+        this.id = id;
+        this.orderTime = LocalDateTime.now();
+        this.totalPrice = totalPrice;
         this.status = status;
     }
 
