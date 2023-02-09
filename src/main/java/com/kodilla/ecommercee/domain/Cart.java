@@ -1,7 +1,13 @@
 package com.kodilla.ecommercee.domain;
 
+import javax.persistence.*;
+
+@Entity(name = "carts")
 public class Cart {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", unique = true)
+    private Integer id;
     private int userId;
     private boolean status;
 }
