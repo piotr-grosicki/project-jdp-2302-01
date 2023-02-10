@@ -5,6 +5,8 @@ import com.kodilla.ecommercee.domain.UserDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/v1/users")
 public class UserController {
@@ -21,6 +23,6 @@ public class UserController {
 
     @GetMapping(value = "{userId}")
     public KeyDto generateKey(@PathVariable int userId){
-        return new KeyDto();
+        return new KeyDto(LocalDateTime.now(), 12346873648124L);
     }
 }
