@@ -1,4 +1,5 @@
 package com.kodilla.ecommercee.domain;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,8 +10,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
-@Setter
 @Entity
 @Table(name="ORDER")
 public class Order {
@@ -32,10 +33,19 @@ public class Order {
     private Cart cart;
     private User user;
 
-    public Order(Integer id, BigDecimal totalPrice, boolean status) {
+    public void setId(Integer id) {
         this.id = id;
-        this.orderTime = LocalDateTime.now();
+    }
+
+    public void setOrderTime(LocalDateTime orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
