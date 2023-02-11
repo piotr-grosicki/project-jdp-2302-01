@@ -1,16 +1,67 @@
 package com.kodilla.ecommercee.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity(name = "ORDERS")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Entity
+@Table(name="ORDER")
 public class Order {
 
     @Id
-    private Long id;
+    @GeneratedValue
+    @NotNull
+    @Column(name="ID", unique=true)
+    private Integer id;
+
+    @Column(name="ORDER TIME")
     private LocalDateTime orderTime;
+
+    @Column(name="TOTAL PRICE")
     private BigDecimal totalPrice;
+
+    @Column(name="STATUS")
     private boolean status;
+
+    @ManyToOne
+    @JoinColumn(name ="USER_ID")
+    private User user;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="CART_ID")
+    private Cart cart;
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setOrderTime(LocalDateTime orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+
+    public void setCarts(Cart cart){
+        this.cart = cart;
+    }
+
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
