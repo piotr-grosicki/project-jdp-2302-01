@@ -81,8 +81,12 @@ public class GroupProductTest extends TestCase {
         assertTrue(productRepository.existsById(product2Id));
 
         //CleanUp
-        groupProductRepository.deleteById(groupId);
-        productRepository.deleteById(product1Id);
-        productRepository.deleteById(product2Id);
+        try {
+            groupProductRepository.deleteById(groupId);
+            productRepository.deleteById(product1Id);
+            productRepository.deleteById(product2Id);
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }

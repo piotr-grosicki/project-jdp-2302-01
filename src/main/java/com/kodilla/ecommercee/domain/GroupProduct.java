@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,45 +10,36 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Entity
 @Table(name = "GROUP_PRODUCT")
 public class GroupProduct {
-
-    private Integer id;
-    private String name;
-    private List<Product> products = new ArrayList<>();
 
     @Id
     @GeneratedValue
     @NotNull
     @Column(name = "ID", unique = true)
-    public Integer getId() {
-        return id;
-    }
-
-    private void setId(Integer id) {
-        this.id = id;
-    }
+    private Integer id;
 
     @Column(name = "NAME")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private String name;
 
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "groupProduct",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-    public List<Product> getProducts() {
-        return products;
+    private List<Product> products = new ArrayList<>();
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    private void setProducts(List<Product> products) {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 }
