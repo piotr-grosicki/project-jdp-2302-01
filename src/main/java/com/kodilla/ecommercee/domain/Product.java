@@ -37,4 +37,16 @@ public class Product {
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Cart> carts = new ArrayList<>();
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
