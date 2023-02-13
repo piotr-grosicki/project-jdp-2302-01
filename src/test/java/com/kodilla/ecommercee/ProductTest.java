@@ -110,21 +110,20 @@ public class ProductTest extends TestCase {
         product2.setPrice(new BigDecimal("99.50"));
         product2.setDescription("Spodnie czarne");
 
-        List<Product> list = new ArrayList<>();
-        list.add(product1);
-        list.add(product2);
-
         //When
         cart.getProducts().add(product1);
         cart.getProducts().add(product2);
-
         cartRepository.save(cart);
 
+        int product1Id = product1.getId();
+        int product2Id = product2.getId();
         int cartId = cart.getId();
 
         //Then
         assertNotEquals(0, cartId);
         assertTrue(cartRepository.existsById(cartId));
+        assertTrue(productRepository.existsById(product1Id));
+        assertTrue(productRepository.existsById(product2Id));
 
         //CleanUp
         try {
