@@ -4,7 +4,6 @@ import com.kodilla.ecommercee.repository.CartRepository;
 import com.kodilla.ecommercee.repository.OrderRepository;
 import com.kodilla.ecommercee.repository.UserRepository;
 import junit.framework.TestCase;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,8 +106,8 @@ public class UserTest extends TestCase {
         Cart cart2 = new Cart();
         cart2.setStatus(true);
 
-        user.getCartList().add(cart1);
-        user.getCartList().add(cart2);
+        user.getCarts().add(cart1);
+        user.getCarts().add(cart2);
 
         //When
         userRepository.save(user);

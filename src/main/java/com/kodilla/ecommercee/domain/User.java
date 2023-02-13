@@ -3,7 +3,6 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -36,7 +35,7 @@ public class User {
             mappedBy = "user",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-    private List<Cart> cartList = new ArrayList<>();
+    private List<Cart> carts = new ArrayList<>();
 
     @OneToMany(
             targetEntity = Order.class,
@@ -58,7 +57,7 @@ public class User {
     }
 
     public void setCartList(List<Cart> cartList) {
-        this.cartList = cartList;
+        this.carts = cartList;
     }
 
     public void setOrders(List<Order> orders) {
