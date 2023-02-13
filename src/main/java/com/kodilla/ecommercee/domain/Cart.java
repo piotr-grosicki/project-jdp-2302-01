@@ -13,19 +13,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "CART")
+@Entity(name = "cart")
 
 public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true)
+    @Column(name = "CART_ID", unique = true)
     private Integer id;
 
     @Column(name = "STATUS")
     private Boolean status;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "carts")
     private List<Product> products = new ArrayList<>();
 
     @ManyToOne
