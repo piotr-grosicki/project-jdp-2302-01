@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.domain.GroupProduct;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
@@ -31,7 +32,11 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Void> createProduct(@RequestBody ProductDto productDto){
-        productDbService.saveProduct(productMapper.mapToProduct(productDto));
+        Product product = productMapper.mapToProduct(productDto);
+        if (productDto.getGroupProductId() != null) {
+            product.setGroupProduct(new GroupProduct()); //todo
+        };
+        productDbService.saveProduct(product);
         return ResponseEntity.ok().build();
     }
 
@@ -42,7 +47,7 @@ public class ProductController {
         return ResponseEntity.ok(productMapper.mapToProductDto(savedProduct));
     }
 
-    @DeleteMapping(value = "{/productId}")
+    @DeleteMapping(value = "/{productId}")
     public ResponseEntity<Object> deleteProduct(@PathVariable Integer productId) throws ProductNotFoundException {
         productDbService.deleteProduct(productId);
         return ResponseEntity.ok().build();

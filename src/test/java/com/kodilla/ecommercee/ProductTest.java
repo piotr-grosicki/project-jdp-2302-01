@@ -132,4 +132,48 @@ public class ProductTest extends TestCase {
             //do nothing
         }
     }
+
+    @Test
+    public void testFindAll() {
+        //Given
+        Product product1 = new Product();
+        product1.setName("Kubek");
+        product1.setPrice(new BigDecimal("23.17"));
+        product1.setDescription("Czarny bez ucha");
+
+        Product product2 = new Product();
+        product2.setName("Garnek");
+        product2.setPrice(new BigDecimal("50.99"));
+        product2.setDescription("Garnek ze stali nierdzewnej");
+
+        Product product3 = new Product();
+        product2.setName("Sztucce");
+        product2.setPrice(new BigDecimal("99.50"));
+        product2.setDescription("Komplet sztuccy");
+
+        //When
+        productRepository.save(product1);
+        productRepository.save(product2);
+        productRepository.save(product3);
+
+        //Then
+        assertEquals(3, productRepository.findAll().size());
+    }
+
+    @Test
+    public void testFindById() {
+        //Given
+        Product product1 = new Product();
+        product1.setName("Kubek");
+        product1.setPrice(new BigDecimal("23.17"));
+        product1.setDescription("Czarny bez ucha");
+
+        //When
+        productRepository.save(product1);
+        int product1Id = product1.getId();
+
+        //Then
+        assertEquals("Kubek", productRepository.findById(product1Id).get().getName());
+        assertFalse(productRepository.findById(product1Id + 1).isPresent());
+    }
 }

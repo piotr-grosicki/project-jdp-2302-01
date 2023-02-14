@@ -14,20 +14,27 @@ public class ProductMapper {
 
     public Product mapToProduct(ProductDto productDto) {
         Product product = new Product();
+        product.setId(productDto.getId());
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
         product.setDescription(productDto.getDescription());
-        product.setGroupProduct(productDto.getGroupProduct());
         return product;
     }
 
     public ProductDto mapToProductDto(Product product) {
+
+        int groupProductId = 0;
+
+        if (product.getGroupProduct() != null) {
+            groupProductId = product.getGroupProduct().getId();
+        }
+
         return new ProductDto(
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
                 product.getDescription(),
-                product.getGroupProduct()
+                groupProductId
         );
     }
 
