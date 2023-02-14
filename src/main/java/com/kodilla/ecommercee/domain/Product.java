@@ -19,7 +19,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true)
+    @Column(name = "PRODUCT_ID", unique = true)
     private Integer id;
 
     @Column(name = "NAME")
@@ -36,7 +36,12 @@ public class Product {
     private GroupProduct groupProduct;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Cart> carts = new ArrayList<>();
+    @JoinTable(
+            name = "JOIN_PRODUCTS_CART",
+            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")}
+    )
+    private List<Cart> carts= new ArrayList<>();
 
     public void setName(String name) {
         this.name = name;
