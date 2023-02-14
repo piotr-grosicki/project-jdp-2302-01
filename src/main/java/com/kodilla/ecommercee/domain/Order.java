@@ -21,7 +21,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    @Column(name="ID", unique=true)
+    @Column(name="ORDER_ID", unique=true)
     private Integer id;
 
     @Column(name="ORDER_TIME")

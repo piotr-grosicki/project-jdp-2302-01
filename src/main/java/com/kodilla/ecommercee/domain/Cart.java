@@ -20,7 +20,7 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", unique = true)
+    @Column(name = "CART_ID", unique = true)
     private Integer id;
 
     @Column(name = "STATUS")
