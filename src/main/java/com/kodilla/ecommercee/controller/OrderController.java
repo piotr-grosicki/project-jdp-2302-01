@@ -38,7 +38,7 @@ public class OrderController {
 
     }
 
-    @DeleteMapping(value = "{/orderId}")
+    @DeleteMapping(value = "/{orderId}")
     public void deleteOrder(@PathVariable Long orderId){
 
     }
