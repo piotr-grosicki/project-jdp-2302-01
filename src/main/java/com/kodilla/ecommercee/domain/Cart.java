@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "CART")
+@Entity(name = "cart")
 
 public class Cart {
 
@@ -26,7 +26,7 @@ public class Cart {
     @Column(name = "STATUS")
     private Boolean status;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "carts")
     private List<Product> products = new ArrayList<>();
 
     @ManyToOne

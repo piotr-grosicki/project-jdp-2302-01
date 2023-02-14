@@ -36,14 +36,16 @@ public class User {
             targetEntity = Cart.class,
             mappedBy = "user",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.LAZY
+    )
     private List<Cart> carts = new ArrayList<>();
 
     @OneToMany(
             targetEntity = Order.class,
             mappedBy = "user",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.LAZY
+    )
     private List<Order> orders = new ArrayList<>();
 }
 
