@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,8 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID")
+    @NotNull
+    @Column(name = "USER_ID", unique = true)
     private Integer id;
 
     @Column(name = "NAME")
@@ -45,7 +47,5 @@ public class User {
             fetch = FetchType.LAZY
     )
     private List<Order> orders = new ArrayList<>();
-
-
 }
 

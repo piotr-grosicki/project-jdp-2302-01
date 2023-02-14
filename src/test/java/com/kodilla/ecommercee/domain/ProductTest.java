@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.domain;
 
 import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.GroupProduct;
