@@ -3,6 +3,7 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,8 +13,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Entity
-@Table(name="ORDER")
+@Table(name="ORDERS")
 public class Order {
 
     @Id
@@ -22,10 +24,10 @@ public class Order {
     @Column(name="ID", unique=true)
     private Integer id;
 
-    @Column(name="ORDER TIME")
+    @Column(name="ORDER_TIME")
     private LocalDateTime orderTime;
 
-    @Column(name="TOTAL PRICE")
+    @Column(name="TOTAL_PRICE")
     private BigDecimal totalPrice;
 
     @Column(name="STATUS")
@@ -38,30 +40,4 @@ public class Order {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="CART_ID")
     private Cart cart;
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setOrderTime(LocalDateTime orderTime) {
-        this.orderTime = orderTime;
-    }
-
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-
-    public void setCarts(Cart cart){
-        this.cart = cart;
-    }
-
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
