@@ -93,7 +93,7 @@ public class UserTest extends TestCase {
     }
 
     @Test
-    public void testSaveUserInCards(){
+    public void testSaveUserWithCards(){
         //Given
         User user = new User();
         user.setName("Tomek");
