@@ -176,4 +176,5 @@ public class ProductTest extends TestCase {
         assertEquals("Kubek", productRepository.findById(product1Id).get().getName());
         assertFalse(productRepository.findById(product1Id + 1).isPresent());
     }
+
 }
