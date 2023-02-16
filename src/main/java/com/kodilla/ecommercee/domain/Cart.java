@@ -25,7 +25,7 @@ public class Cart {
     @Column(name = "STATUS")
     private Boolean status;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "carts")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "carts", fetch = FetchType.EAGER)
     private List<Product> products = new ArrayList<>();
 
     @ManyToOne
