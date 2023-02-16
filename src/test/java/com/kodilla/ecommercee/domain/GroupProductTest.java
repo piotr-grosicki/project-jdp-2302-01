@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.constraints.AssertFalse;
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -89,4 +90,57 @@ public class GroupProductTest extends TestCase {
             //do nothing
         }
     }
+
+    @Test
+    public void testFindAll() {
+        //Given
+        GroupProduct groupProduct1 = new GroupProduct();
+        groupProduct1.setName("Naczynia");
+
+        GroupProduct groupProduct2 = new GroupProduct();
+        groupProduct2.setName("Sztućce");
+
+        GroupProduct groupProduct3 = new GroupProduct();
+        groupProduct3.setName("Pojemniki");
+
+        //When
+        groupProductRepository.save(groupProduct1);
+        groupProductRepository.save(groupProduct2);
+        groupProductRepository.save(groupProduct3);
+
+        //Then
+        assertEquals(3, groupProductRepository.findAll().size());
+
+        //CleanUp
+        try {
+            groupProductRepository.deleteById(groupProduct1.getId());
+            groupProductRepository.deleteById(groupProduct2.getId());
+            groupProductRepository.deleteById(groupProduct3.getId());
+        } catch (Exception e) {
+            //do nothing
+        }
+    }
+
+    @Test
+    public void findById(){
+        //Given
+        GroupProduct groupProduct = new GroupProduct();
+        groupProduct.setName("Naczynia");
+
+        //When
+        groupProductRepository.save(groupProduct);
+        int groupId = groupProduct.getId();
+
+        //Then
+        assertFalse(groupProductRepository.findById(groupId +1).isPresent());
+        assertEquals("Naczynia", groupProductRepository.findById(groupId).get().getName());
+
+        //CleanUp
+        try {
+            groupProductRepository.deleteById(groupId);
+        } catch (Exception e) {
+            //do nothing
+        }
+    }
+
 }
