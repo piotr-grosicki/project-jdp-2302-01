@@ -20,13 +20,12 @@ public class OrderController {
 
     @PostMapping
     public void createOrder(@RequestBody OrderDto orderDto){
-
     }
 
     @GetMapping(value = "/{orderId}")
     public OrderDto getOrder(@PathVariable Long orderId) {
         return new OrderDto(
-                1L,
+                1,
                 LocalDateTime.of(2022,12,15,18,36),
                 new BigDecimal(456.45),
                 true);
@@ -35,11 +34,9 @@ public class OrderController {
     @PutMapping
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
         return orderDto;
-
     }
 
     @DeleteMapping(value = "/{orderId}")
     public void deleteOrder(@PathVariable Long orderId){
-
     }
 }

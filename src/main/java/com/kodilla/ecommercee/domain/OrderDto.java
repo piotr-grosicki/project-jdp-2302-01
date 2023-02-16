@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class OrderDto {
 
-    private Long id;
+    private Integer id;
     private LocalDateTime orderTime;
     private BigDecimal totalPrice;
     private boolean status;
