@@ -43,8 +43,10 @@ public class GroupController {
         return ResponseEntity.ok(groupMapper.mapToGroupProductDto(savedGroupProduct));
     }
 
+    @DeleteMapping(value = "/{groupId}")
     public ResponseEntity<Object> deleteGroupProduct(@PathVariable Integer groupId) throws GroupNotFoundException {
-        groupDbService.deleteGroupProduct(groupId);
+        if(groupDbService.getGroupProduct(groupId).getProducts().isEmpty()){
+            groupDbService.deleteGroupProduct(groupId);}
         return ResponseEntity.ok().build();
     }
 }
