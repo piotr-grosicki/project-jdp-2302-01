@@ -74,7 +74,6 @@ public class OrderTest extends TestCase {
         //When
         userRepository.save(user);
         orderRepository.save(order);
-        cartRepository.save(cart);
 
         //Then
         int orderId = order.getId();
