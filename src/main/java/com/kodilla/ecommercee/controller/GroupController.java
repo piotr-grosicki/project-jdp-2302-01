@@ -18,6 +18,7 @@ public class GroupController {
 
     private final GroupDbService groupDbService;
     private final GroupMapper groupMapper;
+
     @GetMapping
     public ResponseEntity<List<GroupProductDto>> getProductGroups() {
         List<GroupProduct> groupProducts = groupDbService.getAllGroups();

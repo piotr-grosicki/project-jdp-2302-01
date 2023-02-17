@@ -2,6 +2,7 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name = "GROUP_PRODUCT")
 public class GroupProduct {
@@ -30,16 +32,4 @@ public class GroupProduct {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Product> products = new ArrayList<>();
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 }
