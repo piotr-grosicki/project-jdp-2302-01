@@ -4,6 +4,7 @@ import com.kodilla.ecommercee.domain.GroupProduct;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
+import com.kodilla.ecommercee.service.GroupDbService;
 import com.kodilla.ecommercee.service.ProductDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ public class ProductController {
 
     private final ProductDbService productDbService;
     private final ProductMapper productMapper;
+    private final GroupDbService groupDbService;
 
     @GetMapping
     public ResponseEntity<List<ProductDto>> getProducts(){
@@ -31,11 +33,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createProduct(@RequestBody ProductDto productDto){
+    public ResponseEntity<Void> createProduct(@RequestBody ProductDto productDto) throws GroupNotFoundException {
         Product product = productMapper.mapToProduct(productDto);
-        if (productDto.getGroupProductId() != null) {
-            product.setGroupProduct(new GroupProduct()); //todo
-        };
+        Integer groupProductId = productDto.getGroupProductId();
+        if (groupProductId != null) {
+            product.setGroupProduct(groupDbService.getGroupProduct(groupProductId));
+        }
         productDbService.saveProduct(product);
         return ResponseEntity.ok().build();
     }
