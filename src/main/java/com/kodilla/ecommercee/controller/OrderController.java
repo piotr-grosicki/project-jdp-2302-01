@@ -1,7 +1,12 @@
 package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.OrderDto;
+import com.kodilla.ecommercee.mapper.OrderMapper;
+import com.kodilla.ecommercee.service.OrderDbService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.jaxb.SpringDataJaxb;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -11,32 +16,40 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/orders")
+@RequiredArgsConstructor
 public class OrderController {
 
+    private final OrderDbService orderDbService;
+    private final OrderMapper orderMapper;
+
     @GetMapping
-    public List<SpringDataJaxb.OrderDto> getOrders(){
-        return new ArrayList<>();
+    public ResponseEntity<List<OrderDto>> getOrders(){
+        List<Order> orders = orderDbService.getAllOrders();
+        return ResponseEntity.ok(orderMapper.mapToOrderDtoList(orders));
     }
 
     @PostMapping
-    public void createOrder(@RequestBody OrderDto orderDto){
+    public ResponseEntity<Void> createOrder(@RequestBody OrderDto orderDto){
+        Order order = orderMapper.mapToOrder(orderDto);
+        orderDbService.saveOrder(order);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping(value = "/{orderId}")
-    public OrderDto getOrder(@PathVariable Long orderId) {
-        return new OrderDto(
-                1,
-                LocalDateTime.of(2022,12,15,18,36),
-                new BigDecimal(456.45),
-                true);
+    public ResponseEntity<OrderDto> getOrder(@PathVariable Integer orderId) throws OrderNotFoundException {
+        return ResponseEntity.ok(orderMapper.mapToOrderDto(orderDbService.getOrder(orderId)));
     }
 
     @PutMapping
-    public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
-        return orderDto;
+    public ResponseEntity<OrderDto> updateOrder(@RequestBody OrderDto orderDto) {
+        Order order = orderMapper.mapToOrder(orderDto);
+        Order savedOrder = orderDbService.saveOrder(order);
+        return ResponseEntity.ok(orderMapper.mapToOrderDto(savedOrder));
     }
 
     @DeleteMapping(value = "/{orderId}")
-    public void deleteOrder(@PathVariable Long orderId){
+    public ResponseEntity<Object> deleteOrder(@PathVariable Integer orderId) throws OrderNotFoundException {
+        orderDbService.deleteOrder(orderId);
+        return ResponseEntity.ok().build();
     }
 }

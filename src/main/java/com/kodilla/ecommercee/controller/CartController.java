@@ -67,7 +67,7 @@ public class CartController {
     public ResponseEntity<Void> createNewOrder(@PathVariable Integer cartId) throws CartNotFoundException {
         Order order = new Order();
         order.setCart(cartDbService.getCart(cartId));
-        orderController.createOrder(new OrderDto(1, LocalDateTime.now(), new BigDecimal(99.99), true)); //todo
+        orderController.createOrder(new OrderDto(1, LocalDateTime.now(), new BigDecimal(99.99), true, cartId)); //todo
         return ResponseEntity.ok().build();
     }
 }

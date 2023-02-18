@@ -11,7 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
@@ -85,4 +87,54 @@ public class OrderTest extends TestCase {
         orderRepository.deleteById(orderId);
     }
 
+    @Test
+    public void testFindAll(){
+        //Given
+        Order order1 = new Order();
+        order1.setOrderTime(LocalDateTime.now());
+        order1.setStatus(true);
+        Order order2 = new Order();
+        order2.setOrderTime(LocalDateTime.now());
+        order2.setStatus(false);
+        Order order3 = new Order();
+        order3.setOrderTime(LocalDateTime.now());
+        order3.setStatus(true);
+
+        //When
+        orderRepository.save(order1);
+        orderRepository.save(order2);
+        orderRepository.save(order3);
+
+        //Then
+        int order1Id = order1.getId();
+        int order2Id = order2.getId();
+        int order3Id = order3.getId();
+
+        assertEquals(3, orderRepository.count());
+        assertEquals(3, orderRepository.findAll().size());
+
+        //CleanUp
+        orderRepository.deleteById(order1Id);
+        orderRepository.deleteById(order2Id);
+        orderRepository.deleteById(order3Id);
+    }
+
+    @Test
+    public void testFindById(){
+        //Given
+        Order order = new Order();
+        order.setOrderTime(LocalDateTime.now());
+        order.setStatus(true);
+
+        //When
+        orderRepository.save(order);
+
+        //Then
+        int orderId = order.getId();
+
+        assertEquals(true, orderRepository.findById(orderId).get().isStatus());
+
+        //CleanUp
+        orderRepository.deleteById(orderId);
+    }
 }
