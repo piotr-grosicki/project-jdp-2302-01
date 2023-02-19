@@ -2,8 +2,6 @@ package com.kodilla.ecommercee.mapper;
 
 import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.OrderDto;
-import com.kodilla.ecommercee.domain.Product;
-import com.kodilla.ecommercee.domain.ProductDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +33,7 @@ public class OrderMapper {
                 order.getOrderTime(),
                 order.getTotalPrice(),
                 order.isStatus(),
+                order.getUser().getId(),
                 cartId
         );
     }

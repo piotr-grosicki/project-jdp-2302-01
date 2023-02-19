@@ -14,5 +14,6 @@ public class OrderDto {
     private LocalDateTime orderTime;
     private BigDecimal totalPrice;
     private boolean status;
+    private Integer userId;
     private Integer cartId;
 }

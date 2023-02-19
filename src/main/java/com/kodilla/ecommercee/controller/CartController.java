@@ -2,15 +2,16 @@ package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.*;
 import com.kodilla.ecommercee.mapper.CartMapper;
+import com.kodilla.ecommercee.mapper.OrderMapper;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.repository.UserRepository;
 import com.kodilla.ecommercee.service.CartDbService;
+import com.kodilla.ecommercee.service.OrderDbService;
 import com.kodilla.ecommercee.service.ProductDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class CartController {
     private final ProductMapper productMapper;
     private final CartDbService cartDbService;
     private final ProductDbService productDbService;
-    private final OrderController orderController;
     private final UserRepository userRepository;
+    private final OrderDbService orderDbService;
 
     @PostMapping
     public ResponseEntity<Void> createCart(@RequestBody CartDto cartDto) {
@@ -66,8 +67,11 @@ public class CartController {
     @PostMapping(value = "/{cartId}")
     public ResponseEntity<Void> createNewOrder(@PathVariable Integer cartId) throws CartNotFoundException {
         Order order = new Order();
+        order.setOrderTime(LocalDateTime.now());
+        order.setStatus(true);
+        order.setUser(cartDbService.getCart(cartId).getUser());
         order.setCart(cartDbService.getCart(cartId));
-        orderController.createOrder(new OrderDto(1, LocalDateTime.now(), new BigDecimal(99.99), true, cartId)); //todo
+        orderDbService.saveOrder(order);
         return ResponseEntity.ok().build();
     }
 }
