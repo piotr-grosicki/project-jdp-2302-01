@@ -8,6 +8,7 @@ import com.kodilla.ecommercee.repository.UserRepository;
 import com.kodilla.ecommercee.service.CartDbService;
 import com.kodilla.ecommercee.service.OrderDbService;
 import com.kodilla.ecommercee.service.ProductDbService;
+import com.kodilla.ecommercee.service.UserDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,15 +25,14 @@ public class CartController {
     private final ProductMapper productMapper;
     private final CartDbService cartDbService;
     private final ProductDbService productDbService;
-    private final UserRepository userRepository;
     private final OrderDbService orderDbService;
+    private final UserDbService userDbService;
 
     @PostMapping
-    public ResponseEntity<Void> createCart(@RequestBody CartDto cartDto) {
+    public ResponseEntity<Void> createCart(@RequestBody CartDto cartDto) throws UserNotFoundException {
         Cart cart = cartMapper.mapToCart(cartDto);
-        User user = new User();
-        cart.setUser(user); //todo
-        userRepository.save(user); //todo
+        User user = userDbService.getUser(cartDto.getUserId());
+        cart.setUser(user);
         cartDbService.saveCart(cart);
         return ResponseEntity.ok().build();
     }
