@@ -15,4 +15,8 @@ public class UserDbService {
     public User getUser(Integer userId) throws UserNotFoundException {
         return repository.findById(userId).orElseThrow(UserNotFoundException::new);
     }
+
+    public User saveUser(User user) {
+        return repository.save(user);
+    }
 }

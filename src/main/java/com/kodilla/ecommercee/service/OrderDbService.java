@@ -14,8 +14,7 @@ public class OrderDbService {
 
     private final OrderRepository repository;
 
-
-    public List<Order> getAllOrders(){
+    public List<Order> getAllOrders() {
         return repository.findAll();
     }
 
@@ -23,14 +22,14 @@ public class OrderDbService {
         return repository.findById(id).orElseThrow(OrderNotFoundException::new);
     }
 
-    public Order saveOrder(Order order){
+    public Order saveOrder(Order order) {
         return repository.save(order);
     }
 
-    public void deleteOrder (Integer id) throws OrderNotFoundException{
-        if(repository.existsById(id)){
+    public void deleteOrder(Integer id) throws OrderNotFoundException {
+        if (repository.existsById(id)) {
             repository.deleteById(id);
-        }else {
+        } else {
             throw new OrderNotFoundException();
         }
     }

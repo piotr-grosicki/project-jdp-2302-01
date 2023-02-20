@@ -2,9 +2,7 @@ package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.*;
 import com.kodilla.ecommercee.mapper.CartMapper;
-import com.kodilla.ecommercee.mapper.OrderMapper;
 import com.kodilla.ecommercee.mapper.ProductMapper;
-import com.kodilla.ecommercee.repository.UserRepository;
 import com.kodilla.ecommercee.service.CartDbService;
 import com.kodilla.ecommercee.service.OrderDbService;
 import com.kodilla.ecommercee.service.ProductDbService;
