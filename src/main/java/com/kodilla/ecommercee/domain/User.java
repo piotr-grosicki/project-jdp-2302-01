@@ -18,9 +18,8 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue
     @NotNull
-    @Column(name = "USER_ID", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "NAME")
@@ -31,6 +30,9 @@ public class User {
 
     @Column(name = "NICKNAME")
     private String nickName;
+
+    @Column(name = "STATUS")
+    private Boolean isBlocked;
 
     @OneToMany(
             targetEntity = Cart.class,
